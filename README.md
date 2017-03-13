@@ -2,7 +2,7 @@
 A quick reference for alternatives to mutable methods for Javascript collections.
 
 ## Arrays
-Arrays have lots of methods that will introduce side effects into your functions. It's possible to avoid the following _mutating_ methods, with a mixture of `slice`, `reduce` and the `...` (rest and spread) operator.
+Arrays have lots of methods that will introduce side effects into your functions. It's possible to avoid the following _mutating_ methods, with a mixture of `slice`, `filter`, `reduce` and the `...` (rest and spread) operator.
 
 ### pop/shift
 `pop` and `shift` remove the last and first element from an array, respectively.
@@ -49,10 +49,7 @@ return [...arr].sort();
 
 ```js
 // to remove `count` items at `index`
-return ([
-  ...arr.slice(0, index),
-  ...arr.slice(index + count)
-]);
+return arr.filter((item, i) => (i < index || i >= index + count));
 
 // insert items at `index`
 return ([

@@ -77,6 +77,10 @@ describe('sort', () => {
     });
 });
 
+const spliceOnlyRemove = (arr, start, deleteCount) => (
+    arr.filter((item, i) => (i < start || i >= start + deleteCount))
+);
+
 const splice = (arr, start, deleteCount, ...items) => (
     [
         ...arr.slice(0, start),
@@ -89,7 +93,7 @@ describe('splice', () => {
     it('should delete items at index', () => {
         const arr = ['a', 'b', 'c', 'd', 'e'];
         const copy = ['a', 'b', 'c', 'd', 'e'];
-        const result = splice(arr, 2, 2);
+        const result = spliceOnlyRemove(arr, 2, 2);
         const expect = ['a', 'b', 'e'];
         assert.deepEqual(result, expect);
         assert.deepEqual(arr, copy);
