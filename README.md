@@ -41,7 +41,7 @@ It's possible to re-implement `sort` in a side effect free way --- as shown with
 A simpler alternative is to copy the array, then use the mutable sort method on the new copy.
 
 ```js
-return [...arr].sort();
+return [...arr].sort((a, b) => a - b);
 ```
 
 ### splice
